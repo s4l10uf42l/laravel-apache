@@ -71,10 +71,14 @@ RUN npm install  -g pm2  && npm install -g laravel-echo-server
 
 EXPOSE 80 443  6001 
 
+RUN mkdir -p /etc/supervisor/conf.d
 
-ADD master_apache.ini  /etc/supervisor.d/
-
+ADD master_apache.ini  /etc/supervisor/conf.d
+RUN echo user=root >>  /etc/supervisor/supervisord.conf
 
 # The default apache run command
 #CMD ["apache2-foreground"]
-CMD ["/usr/bin/supervisord"]
+#CMD ["/usr/bin/supervisord"]
+CMD supervisord -n -c /etc/supervisor/conf.d/master_apache.ini
+
+
