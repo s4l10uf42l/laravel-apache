@@ -70,7 +70,7 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 EXPOSE 80 443 
 
 
-ADD supervisor-apache.ini  /etc/supervisor.d/
+ADD master_apache.ini  /etc/supervisor.d/
 
 
 # The default apache run command
