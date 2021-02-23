@@ -67,12 +67,14 @@ ENV LOG_CHANNEL=stderr
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 
-EXPOSE 80 443 
+RUN npm install  -g pm2  && npm install -g laravel-echo-server
+
+EXPOSE 80 443  6001 
 
 
 ADD master_apache.ini  /etc/supervisor.d/
 
 
 # The default apache run command
-CMD ["apache2-foreground"]
-#CMD ["/usr/bin/supervisord"]
+#CMD ["apache2-foreground"]
+CMD ["/usr/bin/supervisord"]
