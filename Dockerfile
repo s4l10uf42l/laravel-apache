@@ -74,5 +74,5 @@ ADD supervisor-apache.ini  /etc/supervisor.d/
 
 
 # The default apache run command
-# CMD ["apache2-foreground"]
-CMD ["/usr/bin/supervisord"]
+CMD ["apache2-foreground"]
+#CMD ["/usr/bin/supervisord"]
