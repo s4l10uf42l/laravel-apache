@@ -76,6 +76,11 @@ RUN mkdir -p /etc/supervisor/conf.d
 ADD master_apache.ini  /etc/supervisor/conf.d
 RUN echo user=root >>  /etc/supervisor/supervisord.conf
 
+
+RUN echo '* * * * * /usr/local/bin/php -q -f /var/www/html/artisan schedule:run >> /dev/null 2>&1' >> /var/spool/cron/crontabs/root
+
+RUN chmod 600 /var/spool/cron/crontabs/root
+
 # The default apache run command
 #CMD ["apache2-foreground"]
 #CMD ["/usr/bin/supervisord"]
